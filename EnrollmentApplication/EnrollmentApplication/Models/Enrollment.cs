@@ -25,5 +25,8 @@ namespace EnrollmentApplication.Models
         [Required(ErrorMessage = "It cannot be less than 2018")]
         [Range(typeof(int), "2018", "2030")]
         public virtual int EnrollmentYear { get; set; }
+        
+        [InvalidChars("*")]
+        public virtual string Notes { get; set; }
     }
 }
