@@ -15,7 +15,7 @@ namespace EnrollmentApplication.Models
         [Required(ErrorMessage = "Student First name Needed ")]
         [StringLength(50, ErrorMessage ="First name Shouldn't exceed more than 50 Characters")]
 
-        public string StudentFirstName { get; set; }
+        public string Course { get; set; }
 
         public string Address1 { get; set; }
         public string Address2 { get; set; }

@@ -6,6 +6,52 @@
 
 <h2>Index</h2>
 
+<div class="panel panel-default">
+     <div class="panel-heading">Student Search</div>
+<div class="panel-body">
+    @using (Ajax.BeginForm("_StudentSearch", "Enrollment", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "serachFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults"
+    }))
+    {
+        <input type="text" name="q" />
+        <input type="submit" value="search" />
+    }
+    <div id="searchresults"></div>
+    
+    
+
+   </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Course Search</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("CourseSearch", "Courses", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "serachFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+        }))
+        {
+            <input type="text" name="q" />
+            <input type="submit" value="search" />
+        }
+        <div id="searchresults"></div>
+
+
+
+    </div>
+</div>
+
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -93,3 +139,9 @@
 }
 
 </table>
+    
+        @section Scripts {
+
+    <script src="~/Scripts/Apps/StudentScripts.js"></script>  
+    <script src="~/Scripts/Apps/CourseScripts.js"></script>
+            }

@@ -5,6 +5,21 @@
 }
 
 <h2>Index</h2>
+<div id="StudentOfTheMonth">
+
+    @Ajax.ActionLink("Click to see Student of the Month!",
+    "StudentOfTheMonth",
+    null,
+    new AjaxOptions
+    {
+        UpdateTargetId= "StudentOfTheMonth",
+        InsertionMode  = InsertionMode.Replace,
+        HttpMethod = "GET"
+    },
+    new {@class = "btn btn-primary"})
+
+</div>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,9 +29,11 @@
         <th>
             @Html.DisplayNameFor(model => model.StudentLastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StudentFirstName)
-        </th>
+
+        
+        
+
+        
         <th>
             @Html.DisplayNameFor(model => model.Address1)
         </th>
@@ -40,9 +57,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.StudentLastName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentFirstName)
-        </td>
+
+        
+       
         <td>
             @Html.DisplayFor(modelItem => item.Address1)
         </td>
@@ -67,3 +84,8 @@
 }
 
 </table>
+
+@section Scripts {
+    
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    }
