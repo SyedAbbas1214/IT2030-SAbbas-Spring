@@ -1,0 +1,57 @@
+﻿@model EventPlanner.Models.AttendeeGroupViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hello, @Model.User.UserName!</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div  style="color:#ffffff;">
+<table class="table">
+    <tr>
+        <th scope="col">Invites </th>
+    </tr>
+
+@foreach (var invite in Model.Invites)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => invite.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "AcceptGroupInvite", new { id = invite.Id }) |
+            @Html.ActionLink("Decline", "DeclineGroupInvite", new { id = invite.Id }) |
+        </td>
+    </tr>
+}
+
+</table>
+
+<table class="table">
+    <tr>
+        <th scope="col">Group Name </th>
+    </tr>
+
+@foreach (var group in Model.CurrentGroups)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => group.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Invite Members", "InviteToGroup", new { id = group.Id })            |
+            @Html.ActionLink("Vote For Shows", "Vote", new { GroupId = group.Id })            |
+            @Html.ActionLink("View Schedule", "Schedule", new { GroupId = group.Id })            |
+            @Html.ActionLink("Group Details", "Details", new { id = group.Id })            |
+            @Html.ActionLink("Leave Group", "LeaveGroup", new { userId = Model.User.Id, groupId = group.Id })            |
+            @Html.ActionLink("Delete Group", "DeleteGroup", new { id = group.Id })
+
+        </td>
+    </tr>
+}
+
+</table>
+ </div>

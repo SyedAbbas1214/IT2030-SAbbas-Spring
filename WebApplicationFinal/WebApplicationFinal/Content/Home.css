@@ -1,0 +1,11 @@
+﻿body {
+
+    background-image: url(../Images/homeBg.jpg);
+
+}
+h1 {
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 45px;
+    position: center;
+}

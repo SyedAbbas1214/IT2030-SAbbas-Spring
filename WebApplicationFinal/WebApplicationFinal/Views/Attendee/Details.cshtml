@@ -1,0 +1,82 @@
+﻿@model EventPlanner.Models.GroupToEventsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Group.Name</h2>
+
+<div style="color:#ffffff">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>              
+@foreach (var user in Model.CurrentUsers)
+{
+
+    <tr>
+        <td>
+            @user.UserName
+        </td>
+        <td>
+            @user.Email
+        </td>
+        <td>
+            @Html.ActionLink("Remove", "RemoveMemberFromGroup", new { userId = user.Id, groupId = Model.Group.Id })
+        </td>
+    </tr>
+}
+    </table>
+
+    <table class="table">
+        @Html.ActionLink("Add Event", "AddEventToGroup", new { groupId = Model.Group.Id })
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Price</th>
+                <th>Web Link</th>
+            </tr>
+        </thead>
+        @foreach (var eve in Model.Events)
+        {
+
+            <tr>
+                <td>
+                    @eve.Name
+                </td>
+                <td>
+                    @eve.StartDate
+                </td>
+                <td>
+                    @eve.EndDate
+                </td>
+                <td>
+                    @eve.Cost
+                </td>
+                <td>
+                    @eve.Weblink
+                </td>
+                <td>@Html.ActionLink("Remove", "RemoveEventFromGroup", new { eventId = eve.Id, groupId = Model.Group.Id })</td>
+                <td>
+                    <form action=~/Attendee/Index method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                            data-amount= @eve.Cost
+                            data-name="Stripe.com"
+                            data-description="Widget"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-zip-code="true">
+                    </script>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    @Html.ActionLink("Back", "Index")
+</div>
